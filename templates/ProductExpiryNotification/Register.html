@@ -1,0 +1,122 @@
+{% extends "ProductExpiryNotification/base.html" %}
+{% load widget_tweaks %}
+
+{% block body_block %}
+    <!-- --------------------------------------------- Cards ----------------------------------------------------- -->
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+    <div class="row justify-content-center">
+        <div class="card bg-light text-center" style="width:50rem;">
+            <article class="card-body mx-auto" style="max-width: 400px;">
+                <h4 class="card-title mt-2 text-center">Create Account</h4>
+                <p class="text-center">Get started with your free account</p>
+                <form enctype="multipart/form-data" method="POST">
+                    {% csrf_token %}
+                    <div id="errors">
+                        <div class="inner">
+                            {% if form.error_class.errorlist %}
+                                <div class="alert alert-danger alert-dismissible fade show">
+                                    <strong class="text-center">Error!</strong>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {{ form.first_name.errors |striptags }}
+                    {{ form.last_name.errors | striptags }}
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-user"></i>
+                            </span>
+                        </div>
+                        {{ form.first_name | add_error_class:"alert alert-danger" }}
+                        {{ form.last_name | add_error_class:"alert alert-danger" }}
+
+                    </div>
+                    <!-- form-group// -->
+                    {{ form.username.errors|striptags }}
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-user"></i>
+                            </span>
+                        </div>
+                        {{ form.username| add_error_class:"alert alert-danger" }}
+                    </div>
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-envelope"></i>
+                            </span>
+                        </div>
+                        {{ form.email}}
+                    </div>
+                    <!-- form-group// -->
+                    {{ form.contact_no.errors|striptags }}
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-phone"></i>
+                            </span>
+                        </div>
+                        {{ form.contact_no|add_error_class:"alert alert-danger" }}
+                    </div>
+
+                    <!-- form-group// -->
+                    {{ form.password.errors|striptags }}
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-lock"></i>
+                            </span>
+                        </div>
+                        {{ form.password|add_error_class:"alert alert-danger" }}
+                    </div>
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-lock"></i>
+                            </span>
+                        </div>
+                        {{ form.repeat_password|add_error_class:"alert alert-danger" }}
+                    </div>
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-bell"></i>
+                                &nbspNotify by:
+                            </span>
+                        </div>
+                        {{ form.notify_by|add_class:"form-control"}}
+                    </div>
+                    {{ form.profile_pic.errors | striptags }}
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-id-card"></i>
+                                &nbsp;Profile Pic
+                            </span>
+                        </div>
+                        {{ form.profile_pic | add_error_class:"alert alert-danger" }}
+                    </div>
+                    <!-- form-group// -->
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Create Account
+                        </button>
+                    </div>
+                    <!-- form-group// -->
+                    <p class="text-center">Have an account?
+                        <a href="{% url "ProductExpiryNotification:loginPage" %}">Log In</a>
+                    </p>
+                </form>
+            </article>
+        </div>
+        <!-- card.// -->
+    </div>
+    <!--container end.//-->
+{% endblock %}

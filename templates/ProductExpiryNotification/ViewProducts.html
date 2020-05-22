@@ -1,0 +1,39 @@
+{% extends "ProductExpiryNotification/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block body_block %}
+    <link rel="stylesheet" href="https://unpkg.com/@patternfly/patternfly/patternfly.css" crossorigin="anonymous">
+    <table
+        class="pf-c-table pf-m-compact pf-m-grid-md"
+        role="grid"
+        aria-label="This is a compact table example"
+        id="table-compact">
+        <thead>
+            <tr role="row">
+{#                Uncomment the following lines to add checkboxes #}
+
+{#                <td class="pf-c-table__check" role="cell">#}
+{#                    <input type="checkbox" name="table-compact-check-all" aria-label="Select all rows"/>#}
+{#                </td>#}
+                <th role="columnheader" scope="col">Product</th>
+                <th role="columnheader" scope="col">Description</th>
+                <th role="columnheader" scope="col">Category</th>
+                <th role="columnheader" scope="col">Manufactured Date</th>
+                <th role="columnheader" scope="col">Expiry Date</th>
+            </tr>
+        </thead>
+
+        <tbody role="rowgroup">
+            {% for product in product_list %}
+                <tr role="row">
+                    <td role="cell" data-label="Product">{{ product.product_name }}</td>
+                    <td role="cell" data-label="Description">{{ product.description }}</td>
+                    <td role="cell" data-label="Category">{{ product.category}}</td>
+                    <td role="cell" data-label="Manufactured Date">{{ product.manufactured_date}}</td>
+                    <td role="cell" data-label="Expiry Date">{{ product.expiry_date }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</table>
+{% endblock %}

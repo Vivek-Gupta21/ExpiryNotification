@@ -1,0 +1,21 @@
+{
+  "name": "expirynotification",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vivek-Gupta21/Django-Training.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vivek-Gupta21/Django-Training/issues"
+  },
+  "homepage": "https://github.com/Vivek-Gupta21/Django-Training#readme"
+}

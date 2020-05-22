@@ -1,0 +1,30 @@
+{% extends "ProductExpiryNotification/base.html" %}
+{% load widget_tweaks %}
+
+{% block body_block %}
+    {% if user.is_authenticated %}
+        <div class="container">
+            <div class="jumbotron">
+                 <h1 class="display-4">Welcome to Expiry Notification Application</h1>
+                 <p class="lead">We are still under construction but will be ready soon.</p>
+                 <a class="btn btn-primary" href="{%  url "ProductExpiryNotification:logoutPage" %}">
+                     Logout
+                 </a>
+            </div>
+        </div>
+    {% else %}
+         <div class="container">
+              <div class="jumbotron">
+                  <h1 class="display-4">Welcome to Expiry Notification App</h1>
+                  <p class="lead">Register with us to receive notifications when you product is about expire.</p>
+                  <p class="lead">Already registered, Log In and start using the app.</p>
+                  <a class="btn btn-primary" href="{%  url "ProductExpiryNotification:loginPage" %}">
+                      Login
+                  </a>
+                  <a class="btn btn-primary" href="{%  url "ProductExpiryNotification:registerPage" %}">
+                      Register
+                  </a>
+              </div>
+         </div>
+    {% endif %}
+{% endblock %}
