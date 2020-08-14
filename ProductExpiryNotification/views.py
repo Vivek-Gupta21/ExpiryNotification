@@ -1,7 +1,7 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import (TemplateView, ListView, CreateView)
@@ -74,13 +74,13 @@ class ProductCreateView(CreateView):
 
 
 @method_decorator(login_required, name='dispatch')
-class ViewProductsView(ListView):
+class ShowProductsView(ListView):
     model = Product
     template_name = "ProductExpiryNotification/ViewProducts.html"
     context_object_name = 'product_list'
 
     def get_context_data(self, **kwargs):
-        context = super(ViewProductsView, self).get_context_data(**kwargs)
+        context = super(ShowProductsView, self).get_context_data(**kwargs)
         products = self.get_queryset()
         context['products'] = products
         return context
@@ -95,6 +95,19 @@ class ViewProductsView(ListView):
 @method_decorator(login_required, name='dispatch')
 class LoggedInView(TemplateView):
     template_name = 'ProductExpiryNotification/LoginHomePage.html'
+    model = UserProfile
+    slug_field = "user"
+    # slug_url_kwarg = "user"
+
+    def get_object(self):
+        user_object = get_object_or_404(UserProfile, user=self.kwargs.get("user"))
+
+        # only owner can view his page
+        if self.request.user.username == user_object.user.username:
+            return user_object.user.username
+        else:
+            # redirect to 404 page
+            print("you are not the owner!!")
 
 
 @method_decorator(login_required, name='dispatch')

@@ -39,7 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ProductExpiryNotification',
-    'widget_tweaks'
+    'widget_tweaks',
+    'django_cron',
+]
+
+CRON_CLASSES = [
+    "ProductExpiryNotification.CronJobs.ExpiryNotificationCronJob",
+    # ...
 ]
 
 MIDDLEWARE = [
@@ -162,3 +168,10 @@ LOGIN_URL = '/ProductExpiryNotification/LoggedInView'
     default value for LOGIN_REDIRECT_URL is "/accounts/profile/"
 """
 LOGIN_REDIRECT_URL = 'ProductExpiryNotification:loginHomePage'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

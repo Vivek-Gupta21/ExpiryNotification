@@ -35,6 +35,9 @@ class Product(models.Model):
     notification_date = models.DateField(null=True, unique=False, blank=True)
     product_name = models.CharField(max_length=264, null=False, unique=True)
 
+    def __str__(self):
+        return self.product_name
+
 
 class ProductImages(models.Model):
     product_id = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='images')

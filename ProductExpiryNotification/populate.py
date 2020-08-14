@@ -8,12 +8,10 @@ import random
 """ @:link https://www.diveinto.org/python3/your-first-python-program.html#importsearchpath
     Need to insert Project path in Python Import Search Path, read more about it on the link. """
 
-sys.path.insert(0, r'C:\Users\Vivek\PycharmProjects\ExpiryNotification')
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ExpiryNotification.settings')
-django.setup()
+# sys.path.insert(0, r'C:\Users\Vivek\PycharmProjects\ExpiryNotification')
+# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ExpiryNotification.settings')
+# django.setup()
 
-# from ProductExpiryNotification.models import Product, UserProfile, Counter, counters_initialized
-#
 # """ To use Pymongo commands, connect using these lines:
 #     >: my_client = pymongo.MongoClient("mongodb://localhost:27017/")
 #     >: database = my_client["product_expiry_notification"]

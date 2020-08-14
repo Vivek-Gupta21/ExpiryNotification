@@ -20,6 +20,6 @@ from ProductExpiryNotification import views
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
-    path('', views.IndexView.as_view(), name = 'homePage'),
+    path('', views.IndexView.as_view(), name='homePage'),
     path('expirynotification/', include('ProductExpiryNotification.urls')),
 ]
