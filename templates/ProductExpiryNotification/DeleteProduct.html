@@ -1,0 +1,23 @@
+{% extends "ProductExpiryNotification/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block body_block %}
+         <div class="container">
+              <div class="jumbotron">
+                  <form  method="post">
+                      {% csrf_token %}
+                      <h1 class="display-5">Are you sure you want to delete this product?</h1>
+                      <p>
+                          Product Name: {{ object.product_name }}<br>
+                          Description: {{ object.description }}<br>
+                          Expiry Date: {{ object.expiry_date }}<br>
+                      </p>
+                      <input type="submit" value="Yes" class="btn btn-danger">
+
+                      <a class="btn btn-warning" href="{%  url "ProductExpiryNotification:loginPage" %}">
+                          No
+                      </a>
+                  </form>
+              </div>
+         </div>
+{% endblock %}

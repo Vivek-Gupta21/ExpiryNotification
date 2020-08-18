@@ -20,6 +20,8 @@
                 <th role="columnheader" scope="col">Category</th>
                 <th role="columnheader" scope="col">Manufactured Date</th>
                 <th role="columnheader" scope="col">Expiry Date</th>
+                <th role="columnheader" scope="col"></th>
+                <th role="columnheader" scope="col"></th>
             </tr>
         </thead>
 
@@ -31,7 +33,15 @@
                     <td role="cell" data-label="Category">{{ product.category}}</td>
                     <td role="cell" data-label="Manufactured Date">{{ product.manufactured_date}}</td>
                     <td role="cell" data-label="Expiry Date">{{ product.expiry_date }}</td>
-                </tr>
+                    <td role="cell" data-label="Update">
+                        <a class="btn btn-warning"
+                           href="{% url "ProductExpiryNotification:updateProductPage" product.pk %}"
+                        >Update</a></td>
+                    <td role="cell" data-label="Delete">
+                        <a class="btn btn-danger"
+                           href="{% url "ProductExpiryNotification:deleteProductPage" product.pk %}"
+                        >Delete</a></td>
+               </tr>
             {% endfor %}
         </tbody>
     </table>

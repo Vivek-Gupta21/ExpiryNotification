@@ -10,17 +10,16 @@ class RegistrationForm(forms.ModelForm):
                                                                         'type': 'password',
                                                                         'id': 'password'
                                                                         }))
-    contact_no = forms.CharField(required=False,
-                                 widget=forms.TextInput(attrs={'class': 'form-control',
-                                                               'placeholder': 'Contact Number',
-                                                               'type': 'tel',
-                                                               'pattern': '[0-9].{4,}'
-                                                               }))
-    profile_pic = forms.CharField(required=False,
-                                  widget=forms.FileInput(attrs={'class': 'input-group input-group-prepend '
-                                                                         'form-control btn '
-                                                                         'btn-sm btn-default',
-                                                                }))
+    contact_no = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control',
+                                                                               'placeholder': 'Contact Number',
+                                                                               'type': 'tel',
+                                                                               'pattern': '[0-9].{4,}'
+                                                                               }))
+    profile_pic = forms.CharField(required=False, widget=forms.FileInput(attrs={'class': 'input-group '
+                                                                                         'input-group-prepend '
+                                                                                         'form-control btn '
+                                                                                         'btn-sm btn-default',
+                                                                                }))
     notify_by = forms.ChoiceField(choices=UserProfile.NotificationTypes.choices)
 
     class Meta:

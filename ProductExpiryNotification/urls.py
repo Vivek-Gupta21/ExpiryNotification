@@ -9,5 +9,7 @@ urlpatterns = [
     path('logout/', views.LogoutView.as_view(), name='logoutPage'),
     path('home/', views.LoggedInView.as_view(), name='loginHomePage'),
     path('products/', views.ProductCreateView.as_view(), name='addProductPage'),
-    path('view_product/', views.ShowProductsView.as_view(), name='viewProductPage')
+    path('view_product/', views.ShowProductsView.as_view(), name='viewProductPage'),
+    path('update_product/<pk>/', views.UpdateProductsView.as_view(), name='updateProductPage'),
+    path('delete_product/<pk>', views.DeleteProductView.as_view(), name='deleteProductPage'),
 ]

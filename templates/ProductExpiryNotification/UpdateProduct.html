@@ -1,0 +1,105 @@
+{% extends "ProductExpiryNotification/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block body_block %}
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <div class="row justify-content-center">
+        <div class="card bg-light text-center" style="width:50rem;">
+            <article class="card-body mx-auto" style="max-width: 400px;">
+                <h4 class="card-title mt-2 text-center">Update Product Details</h4>
+                <form enctype="multipart/form-data" method="POST">
+                    {% csrf_token %}
+                    <div id="errors">
+                        <div class="inner">
+                            {% if form.error_class.errorlist %}
+                                <div class="alert alert-danger alert-dismissible fade show">
+                                    <strong class="text-center">Error!</strong>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {{ form.product_name.errors |striptags }}
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-product-hunt"></i>
+                            </span>
+                        </div>
+                        {{ form.product_name | add_class:"form-control" | add_error_class:"alert alert-danger" }}
+                    </div>
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-info"></i>
+                            </span>
+                        </div>
+                        {{ form.description | add_class:"form-control" | add_error_class:"alert alert-danger" }}
+                    </div>
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-caret-down"></i>
+                            </span>
+                        </div>
+                        {{ form.category | add_class:"form-control" }}
+                    </div>
+                    <!-- form-group// -->
+                    {{ form.best_before.errors | striptags }}
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>
+                        {{ form.best_before | add_class:"form-control" | add_error_class:"alert alert-danger" }}
+                    </div>
+
+                    <!-- form-group// -->
+                    {{ form.manufactured_date.errors | striptags }}
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-calendar"></i>
+                                &nbsp Manufactured On:
+                            </span>
+                        </div>
+                        {{ form.manufactured_date | add_class:"form-control" | add_error_class:"alert alert-danger" }}
+                    </div>
+                    {{ form.expiry_date.errors | striptags }}
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-calendar"></i>
+                                &nbsp Expires On:
+                            </span>
+                        </div>
+                        {{ form.expiry_date | add_class:"form-control" | add_error_class:"alert alert-danger" }}
+                    </div>
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-bell"></i>
+                                &nbsp Notify On:
+                            </span>
+                        </div>
+                        {{ form.notification_date | add_class:"form-control" | add_class:"form-control"}}
+                    </div>
+                    <!-- form-group// -->
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Submit
+                        </button>
+                    </div>
+                    <!-- form-group// -->
+                </form>
+            </article>
+        </div>
+        <!-- card.// -->
+    </div>
+    <!--container end.//-->
+{% endblock %}

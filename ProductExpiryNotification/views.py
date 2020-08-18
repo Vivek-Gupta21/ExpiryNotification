@@ -4,7 +4,7 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import (TemplateView, ListView, CreateView)
+from django.views.generic import (TemplateView, ListView, CreateView, UpdateView, DeleteView)
 
 from .forms import ProductForm, RegistrationForm, LoginForm
 from .models import UserProfile, Product
@@ -14,10 +14,8 @@ class IndexView(TemplateView):
     template_name = 'ProductExpiryNotification/index.html'
 
 
+# Provides the ability to register a user
 class RegisterView(CreateView):
-    """
-    Provides the ability to register a user
-    """
     model = UserProfile
     success_url = reverse_lazy('ProductExpiryNotification:loginHomePage')
     form_class = RegistrationForm
@@ -30,10 +28,8 @@ class RegisterView(CreateView):
         return super().form_valid(form)
 
 
+# Provides the ability to login as a user with a username and password
 class LoginUserView(LoginView):
-    """
-    Provides the ability to login as a user with a username and password
-    """
     authentication_form = LoginForm
     template_name = 'ProductExpiryNotification/login.html'
 
@@ -57,10 +53,27 @@ class LoginUserView(LoginView):
 
 
 @method_decorator(login_required, name='dispatch')
+class UpdateProductsView(UpdateView):
+    model = Product
+    template_name = 'ProductExpiryNotification/UpdateProduct.html'
+    fields = ['product_name', 'best_before', 'category', 'description', 'expiry_date', 'manufactured_date',
+              'notification_date']
+    success_url = reverse_lazy("ProductExpiryNotification:viewProductPage")
+
+
+@method_decorator(login_required, name='dispatch')
+class DeleteProductView(DeleteView):
+    model = Product
+    template_name = "ProductExpiryNotification/DeleteProduct.html"
+    success_url = reverse_lazy("ProductExpiryNotification:viewProductPage")
+
+
+@method_decorator(login_required, name='dispatch')
 class ProductCreateView(CreateView):
     model = Product
     form_class = ProductForm
     template_name = 'ProductExpiryNotification/AddProducts.html'
+
     # success_url = reverse_lazy('ProductExpiryNotification:loginHomePage')
 
     def post(self, request, *args, **kwargs):
@@ -97,6 +110,7 @@ class LoggedInView(TemplateView):
     template_name = 'ProductExpiryNotification/LoginHomePage.html'
     model = UserProfile
     slug_field = "user"
+
     # slug_url_kwarg = "user"
 
     def get_object(self):
