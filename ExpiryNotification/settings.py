@@ -11,11 +11,14 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# project_folder = os.path.expanduser('~/my-project-dir')  # adjust as appropriate
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -26,7 +29,9 @@ SECRET_KEY = os.environ['EXPIRY_NOTIFICATION_SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'vivekgupta16.pythonanywhere.com',
+]
 
 
 # Application definition
@@ -41,16 +46,12 @@ INSTALLED_APPS = [
     'ProductExpiryNotification',
     'widget_tweaks',
     'django_cron',
-    'django_crontab',
 ]
 
-CRONJOBS = [
-    ('*/2 * * * *', 'ProductExpiryNotification.cron.expiry_notification_cron_job')
-]
 
-# CRON_CLASSES = [
-#     "ProductExpiryNotification.CronJobs.ExpiryNotificationCronJob",
-# ]
+CRON_CLASSES = [
+    "ProductExpiryNotification.CronJobs.ExpiryNotificationCronJob",
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -164,6 +165,8 @@ STATICFILES_DIRS = [
    STATIC_DIR,
 ]
 
+
+
 MEDIA_URL = '/media/'
 
 LOGIN_URL = '/ProductExpiryNotification/LoggedInView'
@@ -176,8 +179,6 @@ LOGIN_REDIRECT_URL = 'ProductExpiryNotification:loginHomePage'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
-# EMAIL_HOST_USER = 'expirynotification@gmail.com'
-# EMAIL_HOST_PASSWORD = 'Ghost16#'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
