@@ -30,7 +30,8 @@ SECRET_KEY = os.environ['EXPIRY_NOTIFICATION_SECRET_KEY']
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'vivekgupta16.pythonanywhere.com',
+    # 'vivekgupta16.pythonanywhere.com',
+    # "http://127.0.0.1:8000/",
 ]
 
 
