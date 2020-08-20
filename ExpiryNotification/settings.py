@@ -41,16 +41,12 @@ INSTALLED_APPS = [
     'ProductExpiryNotification',
     'widget_tweaks',
     'django_cron',
-    'django_crontab',
 ]
 
-CRONJOBS = [
-    ('* * * * *', 'ProductExpiryNotification.cron.expiry_notification_cron_job')
-]
 
-# CRON_CLASSES = [
-#     "ProductExpiryNotification.CronJobs.ExpiryNotificationCronJob",
-# ]
+CRON_CLASSES = [
+    "ProductExpiryNotification.CronJobs.ExpiryNotificationCronJob",
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
