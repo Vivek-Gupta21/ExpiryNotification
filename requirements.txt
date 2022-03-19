@@ -3,7 +3,7 @@ asgiref==3.2.7
 bcrypt==3.1.7
 cffi==1.14.0
 coverage
-Django==3.0.7
+Django==3.1.14
 django-common-helpers==0.9.2
 django-cron==0.5.1
 django-responsive-images==1.2.0
